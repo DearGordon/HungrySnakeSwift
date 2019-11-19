@@ -15,6 +15,8 @@
 		5413259E2382426700E17B07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5413259C2382426700E17B07 /* LaunchScreen.storyboard */; };
 		541325A92382426700E17B07 /* HungrySnakeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541325A82382426700E17B07 /* HungrySnakeSwiftTests.swift */; };
 		541325B42382426700E17B07 /* HungrySnakeSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541325B32382426700E17B07 /* HungrySnakeSwiftUITests.swift */; };
+		543E4F0323828B3B0026764D /* SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543E4F0223828B3B0026764D /* SnakeView.swift */; };
+		543E4F05238296670026764D /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543E4F04238296670026764D /* Snake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		541325AF2382426700E17B07 /* HungrySnakeSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HungrySnakeSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		541325B32382426700E17B07 /* HungrySnakeSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungrySnakeSwiftUITests.swift; sourceTree = "<group>"; };
 		541325B52382426700E17B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		543E4F0223828B3B0026764D /* SnakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
+		543E4F04238296670026764D /* Snake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				541325912382426600E17B07 /* AppDelegate.swift */,
 				541325932382426600E17B07 /* SceneDelegate.swift */,
 				541325952382426600E17B07 /* ViewController.swift */,
+				543E4F04238296670026764D /* Snake.swift */,
+				543E4F0223828B3B0026764D /* SnakeView.swift */,
 				541325972382426600E17B07 /* Main.storyboard */,
 				5413259A2382426700E17B07 /* Assets.xcassets */,
 				5413259C2382426700E17B07 /* LaunchScreen.storyboard */,
@@ -261,7 +267,9 @@
 			files = (
 				541325962382426600E17B07 /* ViewController.swift in Sources */,
 				541325922382426600E17B07 /* AppDelegate.swift in Sources */,
+				543E4F05238296670026764D /* Snake.swift in Sources */,
 				541325942382426600E17B07 /* SceneDelegate.swift in Sources */,
+				543E4F0323828B3B0026764D /* SnakeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
