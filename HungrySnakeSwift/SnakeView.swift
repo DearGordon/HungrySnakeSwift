@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SnakeViewDelegate {
-    func snakeInView()->SnakeView?
+    func snakeInView()->Snake?
     func fruitInView()->Point?
 }
 

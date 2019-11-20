@@ -12,7 +12,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
     
     
     var snakeView:SnakeView?
-    var snake:SnakeView?
+    var snake:Snake?
     var fruit:Point?
     
     
@@ -58,7 +58,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
         }
     }
     
-    func timer(){
+    func timeMoveOn(){
         
     }
     
@@ -66,11 +66,18 @@ class ViewController: UIViewController,SnakeViewDelegate {
         var x = 0, y = 0
         let hight = Int(self.view.frame.height)
         let weidth = Int(self.view.frame.width)
-        print("totalHW=\(hight),\(weidth)")
+        
         while true {
             x = Int.random(in: 0...hight)
             y = Int.random(in: 0...weidth)
-            
+            var isBody = false
+            for p in self.snake!.pointsArray{
+                if p.x==x && p.y==y{
+                    isBody = true
+                    break
+                }
+            }
+            if !isBody{break}
         }
         print("x=\(x),y=\(y)")
     }
@@ -94,7 +101,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
     
     
     
-    func snakeInView()->SnakeView? {
+    func snakeInView()->Snake? {
         return self.snake
     }
     
