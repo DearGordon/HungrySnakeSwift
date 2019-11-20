@@ -62,6 +62,10 @@ class ViewController: UIViewController,SnakeViewDelegate {
         
     }
     
+    func imMakeingAFunctionForTest(){
+        
+    }
+    
     func makeNewFruit(){
         var x = 0, y = 0
         let hight = Int(self.view.frame.height)
