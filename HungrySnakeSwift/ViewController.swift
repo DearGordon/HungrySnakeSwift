@@ -15,6 +15,10 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var snake:Snake?
     var fruit:Point?
     
+    func iWantToMakeADog(){
+        print("here is your dog")
+    }
+    
     func letsTryNewFunction(){
         print("the function is ready to go")
     }
