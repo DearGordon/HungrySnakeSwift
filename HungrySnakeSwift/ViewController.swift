@@ -15,7 +15,9 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var snake:Snake?
     var fruit:Point?
     
-    
+    func letsTryNewFunction(){
+        print("the function is ready to go")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
