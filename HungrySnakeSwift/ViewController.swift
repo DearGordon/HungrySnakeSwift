@@ -15,7 +15,13 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var snake:Snake?
     var fruit:Point?
     
+    func letsTryNewFunction(){
+        print("the function is ready to go")
+    }
     
+    func catFunction(){
+        print("where is my cat?")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +65,10 @@ class ViewController: UIViewController,SnakeViewDelegate {
     }
     
     func timeMoveOn(){
+        
+    }
+    
+    func imMakeingAFunctionForTest(){
         
     }
     
