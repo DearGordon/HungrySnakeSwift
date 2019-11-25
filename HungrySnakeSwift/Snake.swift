@@ -114,10 +114,13 @@ class Snake {
     
     func isHitBody()->Bool{
         let headPoint = self.pointsArray[0]
-        print("headpoint=\(headPoint)")
-        print("pointArray=\(pointsArray[0])")
+//        print("headpoint=\(headPoint)")
+//        print("pointArray=\(pointsArray[0])")
         for bodyPoint in pointsArray[1..<pointsArray.count-1]{
-            if headPoint.x == bodyPoint.x && bodyPoint.y == bodyPoint.y{
+            if (headPoint.x == bodyPoint.x
+                && headPoint.y == bodyPoint.y){
+                print("蛇的身體=\(bodyPoint)")
+                print("蛇的頭=\(headPoint)")
                 return true
             }
         }

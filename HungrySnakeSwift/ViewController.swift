@@ -120,6 +120,8 @@ class ViewController: UIViewController,SnakeViewDelegate {
     
     func endGame(){
         startBtn.isHidden = false
+        self.time!.invalidate()
+        self.time = nil
     }
     
     @IBOutlet weak var startBtn: UIButton!
