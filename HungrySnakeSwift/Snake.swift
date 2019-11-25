@@ -36,7 +36,7 @@ enum Direction{
         return isOK
     }
     
-    func newHead(oldHead:Point,worldSize:WorldSize)->(Point){
+    func move(oldHead:Point,worldSize:WorldSize)->(Point){
         var theX=oldHead.x
         var theY=oldHead.y
         switch self {
@@ -87,9 +87,8 @@ class Snake {
     
     func move(){
         self.pointsArray.removeLast()
-        let newHead = self.direction.newHead(oldHead: pointsArray[0], worldSize: worldSize)
+        let newHead = self.direction.move(oldHead: pointsArray[0], worldSize: worldSize)
         self.pointsArray.insert(newHead, at: 0)
-        
     }
     
     func changeDirection(newDirection:Direction){
@@ -98,15 +97,41 @@ class Snake {
             self.direction = newDirection
         }
     }
-    
-    func increaseLength(){
+    //從尾巴增加點點
+    func increaseLength(increase:Int){
+        let lastPoint = pointsArray[pointsArray.count-1]
+        let secondLastPoint = pointsArray[pointsArray.count-2]
+        //判斷生成方向
+        let x = lastPoint.x - secondLastPoint.x
+        let y =  lastPoint.y - secondLastPoint.y
+        for i in 0..<increase{
+            let x:Int = lastPoint.x + x * i
+            let y:Int = lastPoint.y + y * i
+            pointsArray.append(Point(x: x, y: y))
+        }
         
     }
     
-    func isHitBody(){
-        
+    func isHitBody()->Bool{
+        let headPoint = self.pointsArray[0]
+        print("headpoint=\(headPoint)")
+        print("pointArray=\(pointsArray[0])")
+        for bodyPoint in pointsArray[1..<pointsArray.count-1]{
+            if headPoint.x == bodyPoint.x && bodyPoint.y == bodyPoint.y{
+                return true
+            }
+        }
+        return false
     }
     
+    func lockDirection(){
+        self.directionLocked = true
+    }
+    
+    func unlockDirection(){
+        self.directionLocked = false
+    }
     
     
 }
+//
