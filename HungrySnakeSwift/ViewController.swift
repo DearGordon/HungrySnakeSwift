@@ -16,14 +16,17 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var fruit:Point?
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //貼上snakeView
+        //貼上滿版的frame
         self.snakeView = SnakeView(frame: self.view.frame)
-        //如果用insertSubview就不會把storyboard的Btn蓋掉
+        //如果用insertSubview，把view下在最下面
         self.view.insertSubview(self.snakeView!, at: 0)
         
         if let view = self.snakeView{
+            //把自己存進snakeview.delegate
             view.delegate = self
         }
         
@@ -86,10 +89,9 @@ class ViewController: UIViewController,SnakeViewDelegate {
         let hight = Int(self.view.frame.height)
         let weidth = Int(self.view.frame.width)
         
-        
         while true {
-            x = Int.random(in: 0...hight)
-            y = Int.random(in: 0...weidth)
+            x = (Int.random(in: 0...weidth)/10)*10
+            y = (Int.random(in: 0...hight)/10)*10
             var isBody = false
             for p in self.snake!.pointsArray{
                 if p.x==x && p.y==y{
@@ -101,20 +103,22 @@ class ViewController: UIViewController,SnakeViewDelegate {
         }
         print("x=\(x),y=\(y)")
         self.fruit = Point(x: x, y: y)
+        print("水果座標\(fruit),frame=\(view.frame)")
     }
     
     func startGame(){
         startBtn.isHidden = true
         
         //make new snake
-        let h = Int(self.view.bounds.height)
-        let w = Int(self.view.bounds.width)
+        let h = Int(self.view.frame.height)
+        let w = Int(self.view.frame.width)
         let worldSize = WorldSize(hight: h, width: w)
         snake = Snake(worldSize: worldSize, startlenght: 20)
         //make new fruit(要先產生出snake才能決定水果的位置)
         makeNewFruit()
-        self.time = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
+        self.time = Timer.scheduledTimer(timeInterval: 0.025, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
         //把蛇跟水果畫上去
+        
         self.snakeView!.setNeedsDisplay()
     }
     

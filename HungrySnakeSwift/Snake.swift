@@ -76,8 +76,8 @@ class Snake {
         self.worldSize = worldSize
         self.length = startlenght
         
-        let x = (self.worldSize.hight!)/2
-        let y = (self.worldSize.width!)/2
+        let x = (self.worldSize.width!)/2
+        let y = (self.worldSize.hight!)/2
         //最一開始的蛇初始化
         for i in 0...length{
             let p:Point = Point(x: x+i, y: y)
