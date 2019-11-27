@@ -41,22 +41,22 @@ enum Direction{
         var theY=oldHead.y
         switch self {
         case .down:
-            theY+=1
+            theY+=10
             if theY>worldSize.hight! {
                 theY=0
             }
         case .up:
-            theY-=1
+            theY-=10
             if theY<0 {
-                theY=worldSize.hight! - 1
+                theY=Int(worldSize.hight!/10)*10 - 10
             }
         case .left:
-            theX -= 1
+            theX -= 10
             if theX<0 {
-                theX=worldSize.width! - 1
+                theX=Int(worldSize.width!/10)*10 - 10
             }
         case .right:
-            theX+=1
+            theX+=10
             if theX>worldSize.width! {
                 theX=0
             }
@@ -76,11 +76,11 @@ class Snake {
         self.worldSize = worldSize
         self.length = startlenght
         
-        let x = (self.worldSize.width!)/2
-        let y = (self.worldSize.hight!)/2
+        let centerx = Int((self.worldSize.width!)/20)*10
+        let centery = Int((self.worldSize.hight!)/20)*10
         //最一開始的蛇初始化
         for i in 0...length{
-            let p:Point = Point(x: x+i, y: y)
+            let p:Point = Point(x: centerx + i*10, y: centery)
             pointsArray.append(p)
         }
     }

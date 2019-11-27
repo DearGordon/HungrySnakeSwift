@@ -42,13 +42,13 @@ class SnakeView: UIView {
             //把蛇設定為黑色
             UIColor.white.set()
             for point in snake.pointsArray{
-                let rect = CGRect(x: (point.x/10)*10, y: (point.y/10)*10, width:  10, height:  10)
+                let rect = CGRect(x: Int(point.x/10)*10, y: Int(point.y/10)*10, width:  10, height:  10)
                 UIBezierPath(rect: rect).fill()
             }
             print("蛇的身體\(snake.pointsArray)")
             UIColor.white.set()
             if let fruit = delegate?.fruitInView(whichView: self){
-                let rect = CGRect(x: (fruit.x/10)*10, y: (fruit.y/10)*10, width: 10, height: 10)
+                let rect = CGRect(x: Int(fruit.x/10)*10, y: Int(fruit.y/10)*10, width: 10, height: 10)
                 UIBezierPath(ovalIn: rect).fill()
 
                 print("fruit in snakeView=\(fruit)")

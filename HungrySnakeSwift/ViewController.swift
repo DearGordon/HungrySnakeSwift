@@ -15,9 +15,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var snake:Snake?
     var fruit:Point?
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //貼上滿版的frame
@@ -116,7 +113,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
         snake = Snake(worldSize: worldSize, startlenght: 20)
         //make new fruit(要先產生出snake才能決定水果的位置)
         makeNewFruit()
-        self.time = Timer.scheduledTimer(timeInterval: 0.025, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
+        self.time = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
         //把蛇跟水果畫上去
         
         self.snakeView!.setNeedsDisplay()
