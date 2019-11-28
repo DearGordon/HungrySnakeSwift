@@ -75,9 +75,9 @@ class Snake {
     init(worldSize:WorldSize,startlenght:Int) {
         self.worldSize = worldSize
         self.length = startlenght
-        
-        let centerx = Int((self.worldSize.width!)/20)*10
-        let centery = Int((self.worldSize.hight!)/20)*10
+        //蛇的位置在畫面的正中央(高跟寬除2)
+        let centerx = Int((self.worldSize.width!)/2/10)*10
+        let centery = Int((self.worldSize.hight!)/2/10)*10
         //最一開始的蛇初始化
         for i in 0...length{
             let p:Point = Point(x: centerx + i*10, y: centery)
@@ -97,6 +97,7 @@ class Snake {
             self.direction = newDirection
         }
     }
+    
     //從尾巴增加點點
     func increaseLength(increase:Int){
         let lastPoint = pointsArray[pointsArray.count-1]
@@ -104,7 +105,7 @@ class Snake {
         //判斷生成方向
         let x = lastPoint.x - secondLastPoint.x
         let y =  lastPoint.y - secondLastPoint.y
-        for i in 0..<increase{
+        for i in 1..<increase-1{
             let x:Int = lastPoint.x + x * i
             let y:Int = lastPoint.y + y * i
             pointsArray.append(Point(x: x, y: y))

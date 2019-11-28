@@ -100,7 +100,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
         }
         print("x=\(x),y=\(y)")
         self.fruit = Point(x: x, y: y)
-        print("水果座標\(fruit),frame=\(view.frame)")
     }
     
     func startGame(){
