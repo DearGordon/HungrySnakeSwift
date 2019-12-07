@@ -16,7 +16,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
     var fruit:Point?
     
     func letsTryNewFunction(){
-        print("the function is ready to go")
+        print("the function is ready to godd")
     }
     
     func catFunction(){
