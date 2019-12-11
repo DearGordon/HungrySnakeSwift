@@ -15,11 +15,11 @@ class HungrySnakeSwiftTests: XCTestCase {
     var viewController:ViewController!
     var snake:Snake!
     var snakeView:SnakeView!
-    let worldSize:WorldSize = WorldSize(hight: 667, width: 375)
+    let screenSize:ScreenSize = ScreenSize(hight: 667, width: 375)
 
     override func setUp() {
         super.setUp()
-        snake = Snake(worldSize: worldSize, startlenght: 20)
+        snake = Snake(screenSize: screenSize, startlenght: 20)
         
     }
     
@@ -39,7 +39,7 @@ class HungrySnakeSwiftTests: XCTestCase {
     
     func testMove(){
         snake.move()
-        let head = snake.pointsArray.first
+        let head = snake.snakePointsArray.first
         XCTAssertEqual(head?.x, 170)
         XCTAssertEqual(head?.y, 330)
     }
@@ -48,15 +48,15 @@ class HungrySnakeSwiftTests: XCTestCase {
         snake.move()
         snake.changeDirection(newDirection:.up)
         snake.move()
-        let head = snake.pointsArray.first
+        let head = snake.snakePointsArray.first
         XCTAssertEqual(head?.x, 170)
         XCTAssertEqual(head?.y, 320)
     }
     
     func testIncreaseLength(){
         snake.increaseLength(increase: 2)
-        //應該要出現的尾巴位置
-        let tail:Array<Point> = snake.pointsArray
+        
+        let tail:Array<Point> = snake.snakePointsArray
         XCTAssertEqual(tail.last?.x, 380)
         XCTAssertEqual(tail.last?.y, 330)
 

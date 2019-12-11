@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct WorldSize {
+struct ScreenSize {
     var hight:Int?
     var width:Int?
 }
@@ -36,7 +36,7 @@ enum Direction{
         return isOK
     }
     
-    func move(oldHead:Point,worldSize:WorldSize)->(Point){
+    func move(oldHead:Point,worldSize:ScreenSize)->(Point){
         var theX=oldHead.x
         var theY=oldHead.y
         switch self {
@@ -66,33 +66,33 @@ enum Direction{
 }
 
 class Snake {
-    var pointsArray:Array<Point> = []
+    var snakePointsArray:Array<Point> = []
     var length:Int
     var direction:Direction = .left
     var directionLocked:Bool = false
-    var worldSize:WorldSize
+    var screenSize:ScreenSize
     
-    init(worldSize:WorldSize,startlenght:Int) {
-        self.worldSize = worldSize
+    init(screenSize:ScreenSize,startlenght:Int) {
+        self.screenSize = screenSize
         self.length = startlenght
-        //蛇的位置在畫面的正中央(高跟寬除2)
-        let centerx = Int((self.worldSize.width!)/2/10)*10
-        let centery = Int((self.worldSize.hight!)/2/10)*10
-        //最一開始的蛇初始化
+        
+        let centerX = Int((self.screenSize.width!)/2/10)*10
+        let centerY = Int((self.screenSize.hight!)/2/10)*10
+        
         for i in 0...length{
-            let p:Point = Point(x: centerx + i*10, y: centery)
-            pointsArray.append(p)
+            let snakePoint:Point = Point(x: centerX + i*10, y: centerY)
+            snakePointsArray.append(snakePoint)
         }
     }
     
     func move(){
-        self.pointsArray.removeLast()
-        let newHead = self.direction.move(oldHead: pointsArray[0], worldSize: worldSize)
-        self.pointsArray.insert(newHead, at: 0)
+        self.snakePointsArray.removeLast()
+        let newHead = self.direction.move(oldHead: snakePointsArray[0], worldSize: screenSize)
+        self.snakePointsArray.insert(newHead, at: 0)
     }
     
     func changeDirection(newDirection:Direction){
-        if self.directionLocked{return}
+        if self.directionLocked { return }
         if self.direction.checkDirection(newDirection: newDirection) {
             self.direction = newDirection
         }
@@ -100,28 +100,26 @@ class Snake {
     
     //從尾巴增加點點
     func increaseLength(increase:Int){
-        let lastPoint = pointsArray[pointsArray.count-1]
-        let secondLastPoint = pointsArray[pointsArray.count-2]
-        //判斷生成方向
-        let x = lastPoint.x - secondLastPoint.x
-        let y =  lastPoint.y - secondLastPoint.y
+        let lastPoint = snakePointsArray[snakePointsArray.count-1]
+        let secondLastPoint = snakePointsArray[snakePointsArray.count-2]
+        
+        let xGroDirect = lastPoint.x - secondLastPoint.x
+        let yGroDirect =  lastPoint.y - secondLastPoint.y
+        
         for i in 1..<increase-1{
-            let x:Int = lastPoint.x + x * i
-            let y:Int = lastPoint.y + y * i
-            pointsArray.append(Point(x: x, y: y))
+            let newX:Int = lastPoint.x + (xGroDirect * i)
+            let newY:Int = lastPoint.y + (yGroDirect * i)
+            snakePointsArray.append(Point(x: newX, y: newY))
         }
         
     }
     
     func isHitBody()->Bool{
-        let headPoint = self.pointsArray[0]
-//        print("headpoint=\(headPoint)")
-//        print("pointArray=\(pointsArray[0])")
-        for bodyPoint in pointsArray[1..<pointsArray.count-1]{
+        let headPoint = self.snakePointsArray[0]
+        
+        for bodyPoint in snakePointsArray[1..<snakePointsArray.count-1]{
             if (headPoint.x == bodyPoint.x
                 && headPoint.y == bodyPoint.y){
-                print("蛇的身體=\(bodyPoint)")
-                print("蛇的頭=\(headPoint)")
                 return true
             }
         }
