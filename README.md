@@ -1,2 +1,3 @@
 # HungrySnakeSwift
-寫一個貪食蛇當練習
+練習做一款貪食蛇遊戲
+
