@@ -17,16 +17,26 @@ class ViewController: UIViewController,SnakeViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //貼上滿版的frame
+        
+        addSnakeView()
+        addSwipeGestureRecognizer()
+    }
+    
+    @IBOutlet weak var startBtn: UIButton!
+    @IBAction func start(_ sender: Any) {
+        self.startGame()
+    }
+    
+    
+    func addSnakeView(){
         self.snakeView = SnakeView(frame: self.view.frame)
-        //如果用insertSubview，把view下在最下面
-        self.view.insertSubview(self.snakeView!, at: 0)
+        guard let snakeView = snakeView else { return }
         
-        if let view = self.snakeView{
-            //把自己存進snakeview.delegate
-            view.delegate = self
-        }
-        
+        snakeView.delegate = self
+        self.view.insertSubview(snakeView, at: 0)
+    }
+    
+    func addSwipeGestureRecognizer(){
         for direction in [UISwipeGestureRecognizer.Direction.up,
             UISwipeGestureRecognizer.Direction.down,
             UISwipeGestureRecognizer.Direction.left,
@@ -35,7 +45,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
                 gr.direction = direction
                 self.view.addGestureRecognizer(gr)
         }
-        
     }
     
     @objc func swipe(_ gr:UISwipeGestureRecognizer){
@@ -62,6 +71,22 @@ class ViewController: UIViewController,SnakeViewDelegate {
         }
     }
     
+    func startGame(){
+        startBtn.isHidden = true
+        
+        //make new snake
+        let screenH = Int(self.view.frame.height)
+        let screenW = Int(self.view.frame.width)
+        let screendSize = ScreenSize(hight: screenH, width: screenW)
+        snake = Snake(screenSize: screendSize, startlenght: 20)
+        
+        makeNewFruit()
+        self.time = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
+        //把蛇跟水果畫上去
+        
+        self.snakeView!.setNeedsDisplay()
+    }
+    
     @objc func timeMoveOn(){
         self.snake?.move()
         let hitBody = self.snake?.isHitBody()
@@ -70,7 +95,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
             return
         }
         
-        let head = self.snake?.pointsArray[0]
+        let head = self.snake?.snakePointsArray[0]
         if head?.x == fruit?.x &&
             head?.y == fruit?.y{
             snake?.increaseLength(increase: 2)
@@ -90,7 +115,7 @@ class ViewController: UIViewController,SnakeViewDelegate {
             x = (Int.random(in: 0...weidth)/10)*10
             y = (Int.random(in: 0...hight)/10)*10
             var isBody = false
-            for p in self.snake!.pointsArray{
+            for p in self.snake!.snakePointsArray{
                 if p.x==x && p.y==y{
                     isBody = true
                     break
@@ -100,23 +125,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
         }
         print("x=\(x),y=\(y)")
         self.fruit = Point(x: x, y: y)
-        print("水果座標\(fruit),frame=\(view.frame)")
-    }
-    
-    func startGame(){
-        startBtn.isHidden = true
-        
-        //make new snake
-        let h = Int(self.view.frame.height)
-        let w = Int(self.view.frame.width)
-        let worldSize = WorldSize(hight: h, width: w)
-        snake = Snake(worldSize: worldSize, startlenght: 20)
-        //make new fruit(要先產生出snake才能決定水果的位置)
-        makeNewFruit()
-        self.time = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
-        //把蛇跟水果畫上去
-        
-        self.snakeView!.setNeedsDisplay()
     }
     
     func endGame(){
@@ -124,13 +132,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
         self.time!.invalidate()
         self.time = nil
     }
-    
-    @IBOutlet weak var startBtn: UIButton!
-    @IBAction func start(_ sender: Any) {
-        self.startGame()
-    }
-    
-    
     
     func snakeInView(whichView: SnakeView)->Snake? {
         return self.snake
