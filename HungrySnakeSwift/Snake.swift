@@ -85,20 +85,20 @@ class Snake {
         }
     }
     
-    func move(){
+    func move() {
         self.pointsArray.removeLast()
         let newHead = self.direction.move(oldHead: pointsArray[0], worldSize: worldSize)
         self.pointsArray.insert(newHead, at: 0)
     }
     
     func changeDirection(newDirection:Direction){
-        if self.directionLocked{return}
+        if self.directionLocked { return }
         if self.direction.checkDirection(newDirection: newDirection) {
             self.direction = newDirection
         }
     }
     //從尾巴增加點點
-    func increaseLength(increase:Int){
+    func increaseLength(increase:Int) {
         let lastPoint = pointsArray[pointsArray.count-1]
         let secondLastPoint = pointsArray[pointsArray.count-2]
         //判斷生成方向
