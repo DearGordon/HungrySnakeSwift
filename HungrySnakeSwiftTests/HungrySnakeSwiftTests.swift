@@ -9,26 +9,57 @@
 import XCTest
 @testable import HungrySnakeSwift
 
+
+
 class HungrySnakeSwiftTests: XCTestCase {
+    var viewController:ViewController!
+    var snake:Snake!
+    var snakeView:SnakeView!
+    let screenSize:ScreenSize = ScreenSize(hight: 667, width: 375)
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        snake = Snake(screenSize: screenSize, startlenght: 20)
+        
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testHitBody(){
+        snake.move()
+        snake.changeDirection(newDirection: .up)
+        snake.move()
+        snake.changeDirection(newDirection: .left)
+        snake.move()
+        snake.changeDirection(newDirection: .down)
+        snake.move()
+        snake.changeDirection(newDirection: .right)
+        snake.move()
+        
+        XCTAssert(snake.isHitBody())
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testMove(){
+        snake.move()
+        let head = snake.snakePointsArray.first
+        XCTAssertEqual(head?.x, 170)
+        XCTAssertEqual(head?.y, 330)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testChangeDirection(){
+        snake.move()
+        snake.changeDirection(newDirection:.up)
+        snake.move()
+        let head = snake.snakePointsArray.first
+        XCTAssertEqual(head?.x, 170)
+        XCTAssertEqual(head?.y, 320)
     }
+    
+    func testIncreaseLength(){
+        snake.increaseLength(increase: 2)
+        
+        let tail:Array<Point> = snake.snakePointsArray
+        XCTAssertEqual(tail.last?.x, 380)
+        XCTAssertEqual(tail.last?.y, 330)
 
+    }
+   
 }
