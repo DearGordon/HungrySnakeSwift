@@ -24,6 +24,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wnJ-Q7-AMj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fbY-cC-XoT"/>
                             <constraint firstItem="wnJ-Q7-AMj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="o9u-6P-mlR"/>
