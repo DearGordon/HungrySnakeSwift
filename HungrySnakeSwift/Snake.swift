@@ -98,7 +98,7 @@ class Snake {
         }
     }
     
-    //從尾巴增加點點
+    //add point at tail
     func increaseLength(increase:Int){
         let lastPoint = snakePointsArray[snakePointsArray.count-1]
         let secondLastPoint = snakePointsArray[snakePointsArray.count-2]

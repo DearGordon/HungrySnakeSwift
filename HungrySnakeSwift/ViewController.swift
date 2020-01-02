@@ -82,7 +82,6 @@ class ViewController: UIViewController,SnakeViewDelegate {
         
         makeNewFruit()
         self.time = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timeMoveOn), userInfo: nil, repeats: true)
-        //把蛇跟水果畫上去
         
         self.snakeView!.setNeedsDisplay()
     }
